@@ -35,6 +35,11 @@ namespace BitVecc
             _bits = bitvec._bits;
         }
 
+        public bool this[int index]
+        {
+            get => _bits[index];
+        }
+
         /// <summary>
         /// Performs bitwise 'AND' operation
         /// </summary>
