@@ -117,30 +117,32 @@ namespace BitVecc
             return new BitVec(newBits);
         }
 
-        public BitVec LShift(int amount) 
+        public BitVec LShift(uint amount) 
         {
             Span<bool> newBits = new bool[_bits.Length];
             ref var firstElement = ref MemoryMarshal.GetReference(_bits);
             ref var firstElementNew = ref MemoryMarshal.GetReference(newBits);
-            for (int i = 0; i < _bits.Length; i++)
+            for (uint i = 0; i < _bits.Length; i++)
             {
                 bool currentItem = Unsafe.Add(ref firstElement, i);
-                bool value = (i - amount >= 0) && currentItem;
-                Unsafe.Add(ref firstElementNew, i - amount) = value;
+                bool withinBounds = i >= amount;
+                bool value = withinBounds && currentItem;
+                Unsafe.Add(ref firstElementNew, withinBounds ? i - amount : i) = value;
             }
             return new BitVec(newBits);
         }
 
-        public BitVec RShift(int amount)
+        public BitVec RShift(uint amount)
         {
             Span<bool> newBits = new bool[_bits.Length];
             ref var firstElement = ref MemoryMarshal.GetReference(_bits);
             ref var firstElementNew = ref MemoryMarshal.GetReference(newBits);
-            for (int i = 0; i < _bits.Length; i++)
+            for (uint i = 0; i < _bits.Length; i++)
             {
                 bool currentItem = Unsafe.Add(ref firstElement, i);
-                bool value = (i + amount < _bits.Length) && currentItem;
-                Unsafe.Add(ref firstElementNew, i + amount) = value;
+                bool withinBounds = i + amount < _bits.Length;
+                bool value = withinBounds && currentItem;
+                Unsafe.Add(ref firstElementNew, withinBounds ? i + amount : i) = value;
             }
             return new BitVec(newBits);
         }
