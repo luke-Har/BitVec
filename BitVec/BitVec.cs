@@ -142,7 +142,7 @@ namespace BitVecc
             Span<bool> newBits = new bool[_bits.Length];
             ref var firstElement = ref MemoryMarshal.GetReference(_bits);
             ref var firstElementNew = ref MemoryMarshal.GetReference(newBits);
-            for (uint i = (uint)(_bits.Length-1); i-- > 0; )
+            for (uint i = (uint)(_bits.Length); i-- > 0; )
             {
                 bool currentItem = Unsafe.Add(ref firstElement, i);
                 bool withinBounds = i + amount < _bits.Length;
