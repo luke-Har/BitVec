@@ -3,11 +3,11 @@
 </div>
 
 
-Simple immutable and stack-only intermediary for BitArray.
+Simple, immutable and lightweight intermediary for BitArray.
 
 For when you wish BitArray was more like LINQ.
 
-It can be used as a stack-only intermediary between BitArray instances, allowing for chaining of operations.
+It can be used as a lightweight intermediary between BitArray instances, allowing for chaining of operations and very little GC pressure.
 ```csharp
 BitVec mask = new BitVec(new bool[] {0,0,1,1,1,1});
 BitArray bitArr = new BitArray(new bool[] {1,0,0,1,1,0});
