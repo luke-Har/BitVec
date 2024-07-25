@@ -28,6 +28,15 @@ namespace BitVecc
         }
 
         /// <summary>
+        /// Copies params into new BitVec instance
+        /// </summary>
+        /// <param name="bits"></param>
+        public BitVec(params bool[] bits)
+        {
+            _bits = bits;
+        }
+
+        /// <summary>
         /// Copies entered BitVec into a new instance
         /// </summary>
         /// <param name="bitvec"></param>
